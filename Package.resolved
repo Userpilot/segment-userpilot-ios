@@ -1,5 +1,5 @@
 {
-  "originHash" : "cde5709e802f39da229c2cc5251df6ae57043db72b2ea11b951d7a4892dea5fb",
+  "originHash" : "c0a0571c0bc9fc9e04c4de63f28d8fc3dd078d4f472e54860e2926fc136278b1",
   "pins" : [
     {
       "identity" : "analytics-swift",
@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Userpilot/ios-sdk.git",
       "state" : {
-        "revision" : "470265ebe5e195a465f9304d5bb434cae2d47aef",
-        "version" : "0.0.1-beta.5"
+        "revision" : "201205f1ea541f40ab246b5d39492d8934b19331",
+        "version" : "0.0.1-rc.2"
       }
     },
     {
@@ -38,21 +38,12 @@
       }
     },
     {
-      "identity" : "swiftlintplugins",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/SimplyDanny/SwiftLintPlugins",
-      "state" : {
-        "revision" : "f9731bef175c3eea3a0ca960f1be78fcc2bc7853",
-        "version" : "0.57.1"
-      }
-    },
-    {
       "identity" : "swiftphoenixclient",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/davidstump/SwiftPhoenixClient",
       "state" : {
-        "revision" : "e26e1bedd1e29d0c1f3be8dc3cdbae1af3e9a81e",
-        "version" : "5.2.2"
+        "revision" : "25a4d8a3fa754ef3fb587a34addd08c7e568abc4",
+        "version" : "5.3.5"
       }
     }
   ],

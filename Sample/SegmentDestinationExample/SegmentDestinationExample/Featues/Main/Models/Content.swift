@@ -15,11 +15,11 @@ enum Content {
     var title: String {
         switch self {
         case .identify:
-            return "identify_title".localized
+            return "Identify"
         case .screens:
-            return "screens_title".localized
+            return "Screens"
         case .events:
-            return "events_title".localized
+            return "Track events"
         }
     }
 }

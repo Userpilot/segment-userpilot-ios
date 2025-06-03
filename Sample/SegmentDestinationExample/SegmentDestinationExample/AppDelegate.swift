@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Userpilot
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,8 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         // Override point for customization after application launch.
-        UserpilotManager.shared.initialize()
-
+        SegmentManager.shared.initialize()
         return true
     }
 

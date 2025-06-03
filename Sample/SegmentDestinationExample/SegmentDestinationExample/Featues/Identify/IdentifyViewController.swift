@@ -22,6 +22,11 @@ class IdentifyViewController: BaseViewController {
             textFieldUserID.delegate = self
         }
     }
+    @IBOutlet weak var textFieldGroupID: UITextField! {
+        didSet {
+            textFieldGroupID.delegate = self
+        }
+    }
     @IBOutlet weak var userPropertiesStackView: UIStackView!
     @IBOutlet weak var companyPropertiesStackView: UIStackView!
     @IBOutlet weak var anonymousButton: UIButton! {
@@ -38,13 +43,13 @@ class IdentifyViewController: BaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UserpilotManager.shared.screen("identify")
+        SegmentManager.shared.screen("identify")
     }
 
     // MARK: - IBActions
 
     @IBAction func onIdentifyButtonClicked(_ sender: UIButton) {
-        labelAuthorizedUser.text = "identifing".localized
+        labelAuthorizedUser.text = "identifing"
         labelAuthorizedUser.isHidden = false
         identifyUser()
     }
@@ -63,13 +68,11 @@ class IdentifyViewController: BaseViewController {
 
     @IBAction func onLogout(_ sender: UIButton) {
         FlowRoutingManager.shared.showAlertMessage("User logged out successfully!")
-        UserpilotManager.shared.logout()
+        SegmentManager.shared.logout()
     }
 
     @IBAction func onAnonymous(_ sender: UIButton) {
-        labelAuthorizedUser.text = "identifing".localized
-        labelAuthorizedUser.isHidden = false
-        UserpilotManager.shared.anonymous()
+        groupUser()
     }
 
 }
@@ -98,25 +101,38 @@ extension IdentifyViewController {
             let (key, value) = propertyView.getParams()
             userProperties[key] = value
         }
+        // Add createdAt in ISO 8601 format (e.g., "2025-06-02")
+        userProperties["createdAt"] = getIso8601Date()
+        SegmentManager.shared.identify(userID: userID, properties: userProperties)
+    }
+    
+    private func groupUser() {
+        guard let groupID = textFieldGroupID.text, !groupID.isEmpty else {
+            FlowRoutingManager.shared.showAlertMessage("Please insert Group ID!")
+            return
+        }
 
         var companyProperties: [String: Any] = [:]
         for (_, propertyView) in companyPropertiesViews {
             let (key, value) = propertyView.getParams()
             companyProperties[key] = value
         }
+        // Add createdAt in ISO 8601 format (e.g., "2025-06-02")
+        companyProperties["createdAt"] = getIso8601Date()
 
-        var properties: [String: Any] = userProperties
-        if !companyProperties.isEmpty {
-            properties["company"] = companyProperties
-        }
-
-        UserpilotManager.shared.identify(userID: userID, properties: properties)
+        SegmentManager.shared.group(groupID: groupID, properties: companyProperties)
     }
 
     func onUserIdentified(_ user: [String: Any]) {
         labelAuthorizedUser.attributedText = user.formattedJSONLabel()
     }
 
+    func getIso8601Date() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        return formatter.string(from: Date())
+    }
 }
 
 // MARK: - Instance

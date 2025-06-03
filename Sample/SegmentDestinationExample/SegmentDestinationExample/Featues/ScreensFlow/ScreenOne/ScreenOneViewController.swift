@@ -14,7 +14,7 @@ class ScreenOneViewController: BaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UserpilotManager.shared.screen("screen one")
+        SegmentManager.shared.screen("screen one")
     }
 
     // MARK: - IBAction

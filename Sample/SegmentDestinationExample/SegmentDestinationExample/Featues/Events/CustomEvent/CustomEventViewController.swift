@@ -25,7 +25,7 @@ class CustomEventViewController: BaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UserpilotManager.shared.screen("custom events")
+        SegmentManager.shared.screen("custom events")
     }
 
     // MARK: - IBActions
@@ -42,10 +42,6 @@ class CustomEventViewController: BaseViewController {
         showAddEventPropertyDiaog()
     }
 
-    @IBAction func onAdvanceEventButtonClicked(_ sender: UIButton) {
-        FlowRoutingManager.shared.openViewController(EventsViewController.newInstance())
-    }
-
 }
 
 // MARK: - Helper methods
@@ -59,7 +55,7 @@ extension CustomEventViewController {
         for (_, propertyView) in eventPropertiesViews {
             eventProperties[propertyView.getParams().0] = propertyView.getParams().1
         }
-        UserpilotManager.shared.track(eventName: eventName, properties: eventProperties)
+        SegmentManager.shared.track(eventName: eventName, properties: eventProperties)
     }
 
 }

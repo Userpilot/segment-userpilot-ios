@@ -12,7 +12,7 @@ class ScreenTwoViewController: BaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UserpilotManager.shared.screen("screen two")
+        SegmentManager.shared.screen("screen two")
     }
 
     // MARK: - IBAction

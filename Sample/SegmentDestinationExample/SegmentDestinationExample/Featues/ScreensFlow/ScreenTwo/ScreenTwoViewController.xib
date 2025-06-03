@@ -93,6 +93,9 @@
                     <buttonConfiguration key="configuration" style="filled" title="Show experience">
                         <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="16"/>
                     </buttonConfiguration>
+                    <connections>
+                        <action selector="onNextButtonClicked:" destination="-1" eventType="touchUpInside" id="9lg-AO-780"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="yuX-s0-pil"/>
@@ -116,7 +119,7 @@
     <resources>
         <image name="arrow.backward" catalog="system" width="128" height="95"/>
         <namedColor name="AccentColor">
-            <color red="0.40400001406669617" green="0.39599999785423279" blue="0.9100000262260437" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.40400001406669617" green="0.39599999785423279" blue="0.9100000262260437" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="MineShaft">
             <color red="0.13300000131130219" green="0.13300000131130219" blue="0.13300000131130219" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -64,10 +64,10 @@ public class UserpilotDestination: DestinationPlugin {
     
     public func identify(event: IdentifyEvent) -> IdentifyEvent? {
         guard let userpilot = userpilot,
-              let userId = event.userId,
+              let userId = event.userId ?? event.anonymousId,
               !userId.isEmpty
         else { return event }
-
+        
         userpilot.identify(
             userID: userId,
             properties: event.traits?.mapToUserpilotProperties
@@ -77,16 +77,19 @@ public class UserpilotDestination: DestinationPlugin {
     }
     
     public func group(event: GroupEvent) -> GroupEvent? {
-        guard let userpilot = userpilot else { return event }
+        guard let userpilot = userpilot,
+              let userId = event.userId ?? event.anonymousId,
+              !userId.isEmpty
+        else { return event }
         
-        if let user = userpilot.settings()["User"] as? [String: Any],
-            let userID = user["userID"] as? String {
-            let properties = event.traits?.mapToUserpilotProperties ?? [:]
-            var company: [String: Any] = ["id": event.groupId ?? ""]
-            company.merge(properties) { (_, new) in new }
-
-            userpilot.identify(userID: userID, company: company)
-        }
+        let properties = event.traits?.mapToUserpilotProperties ?? [:]
+        var company: [String: Any] = ["id": event.groupId ?? ""]
+        company.merge(properties) { (_, new) in new }
+        
+        userpilot.identify(
+            userID: userId,
+            company: company
+        )
         
         return event
     }
@@ -106,7 +109,7 @@ public class UserpilotDestination: DestinationPlugin {
     }
     
     public func reset() {
-        userpilot?.destroy()
+        userpilot?.logout()
     }
 }
 
@@ -141,12 +144,12 @@ private extension JSON {
     var mapToUserpilotProperties: [String: Any]? {
         guard let properties = dictionaryValue else { return nil }
 
-        // Create a new dictionary to store filtered properties
         var filteredProperties: [String: Any] = [:]
-        
+
         for (key, value) in properties {
             if isAllowedPropertyType(value) {
-                filteredProperties[key] = value
+                let mappedKey = (key == "createdAt") ? "created_at" : key
+                filteredProperties[mappedKey] = value
             }
         }
 
@@ -157,7 +160,7 @@ private extension JSON {
 /// Validates if a value is of a type supported by Userpilot traits.
 private func isAllowedPropertyType(_ value: Any) -> Bool {
     if value is [String: Any] {
-        return true // Allow dictionaries
+        return true
     }
 
     switch value {

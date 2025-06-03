@@ -11,11 +11,11 @@ import SegmentUserpilot
 import Segment
 import Userpilot
 
-class UserpilotManager {
+class SegmentManager {
     
     // MARK: - Public Properties
     
-    static let shared = UserpilotManager()
+    static let shared = SegmentManager()
     
     // MARK: - Private Properties
     
@@ -24,7 +24,7 @@ class UserpilotManager {
      However, this approach is not recommended because the token is intended to be configured only once.
      For better practice, declare the Userpilot instance inside init.
      */
-    private var analytics = Analytics(configuration: Configuration(writeKey: "")
+    private var analytics = Analytics(configuration: Configuration(writeKey: "YvNk9PJtR97EoXLSPYzNXUCDeQ1tbCu8")
         .trackApplicationLifecycleEvents(true))
     
     private let userpilotDestination = UserpilotDestination { config in
@@ -49,13 +49,12 @@ class UserpilotManager {
     }
     
     /// Identify user
-    func identify(userID: String, properties: [String: Any]? = nil, company: [String: Any]? = nil) {
+    func identify(userID: String, properties: [String: Any]? = nil) {
         analytics.identify(userId: userID, traits: properties)
     }
     
-    /// login as Anonymous
-    func anonymous() {
-        userpilotDestination.userpilot?.anonymous()
+    func group(groupID: String, properties: [String: Any]? = nil) {
+        analytics.group(groupId: groupID, traits: properties)
     }
     
     /// Logout user
@@ -77,7 +76,7 @@ class UserpilotManager {
 
 // MARK: - UserpilotNavigationDelegate
 
-extension UserpilotManager: UserpilotNavigationDelegate {
+extension SegmentManager: UserpilotNavigationDelegate {
 
     func navigate(to url: URL, completion: @escaping (Bool) -> Void) {
         delay(1) {

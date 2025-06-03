@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class MainViewController: BaseViewController {
+class MainViewController: UIViewController {
 
     // MARK: - IBOutlet
 
@@ -25,12 +25,12 @@ class MainViewController: BaseViewController {
     // MARK: - Override
     override func viewDidLoad() {
         super.viewDidLoad()
-        UserpilotManager.shared.settings()
+        SegmentManager.shared.settings()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UserpilotManager.shared.screen("main")
+        SegmentManager.shared.screen("main")
     }
 }
 
