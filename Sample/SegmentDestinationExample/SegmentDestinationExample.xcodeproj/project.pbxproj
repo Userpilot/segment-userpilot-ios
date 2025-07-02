@@ -257,7 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				ABACA8632C96E3E9006C9B77 /* UI */,
-				ABC0AE162C7205BA00BB9F62 /* Userpilot */,
+				ABC0AE162C7205BA00BB9F62 /* Segment */,
 				AB6DBD3B2C68CDB90009BB11 /* Routing */,
 				AB585F652CD79D8C00E2A66D /* StorageManager.swift */,
 			);
@@ -334,12 +334,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		ABC0AE162C7205BA00BB9F62 /* Userpilot */ = {
+		ABC0AE162C7205BA00BB9F62 /* Segment */ = {
 			isa = PBXGroup;
 			children = (
 				AB5B9BEF2DEF15DB008326F0 /* SegmentManager.swift */,
 			);
-			path = Userpilot;
+			path = Segment;
 			sourceTree = "<group>";
 		};
 		C5C897AC2C5CFFFA0083928E = {

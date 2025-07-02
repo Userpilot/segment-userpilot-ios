@@ -78,11 +78,10 @@ class SegmentManager {
 
 extension SegmentManager: UserpilotNavigationDelegate {
 
-    func navigate(to url: URL, completion: @escaping (Bool) -> Void) {
+    func navigate(to url: URL) {
         delay(1) {
             if url.scheme == "userpilot-example" {
                 guard let destination = url.host else {
-                    completion(false)
                     return
                 }
                 if destination == "demo" {
@@ -94,12 +93,8 @@ extension SegmentManager: UserpilotNavigationDelegate {
                 } else if destination == "screen_two" {
                     FlowRoutingManager.shared.openViewController(ScreenTwoViewController.newInstance())
                 }
-                completion(true)
             } else if url.scheme?.contains("http") == true || url.scheme?.contains("https") == true {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                completion(true)
-            } else {
-                completion(false)
             }
         }
     }

@@ -69,8 +69,8 @@ public class UserpilotDestination: DestinationPlugin {
         else { return event }
         
         userpilot.identify(
-            userID: userId,
-            properties: event.traits?.mapToUserpilotProperties
+            userId: userId,
+            properties: event.traits?.mapSanitizeToUserpilotProperties
         )
         
         return event
@@ -82,12 +82,12 @@ public class UserpilotDestination: DestinationPlugin {
               !userId.isEmpty
         else { return event }
         
-        let properties = event.traits?.mapToUserpilotProperties ?? [:]
+        let properties = event.traits?.mapSanitizeToUserpilotProperties ?? [:]
         var company: [String: Any] = ["id": event.groupId ?? ""]
         company.merge(properties) { (_, new) in new }
         
         userpilot.identify(
-            userID: userId,
+            userId: userId,
             company: company
         )
         
@@ -147,24 +147,31 @@ private extension JSON {
         var filteredProperties: [String: Any] = [:]
 
         for (key, value) in properties {
-            if isAllowedPropertyType(value) {
-                let mappedKey = (key == "createdAt") ? "created_at" : key
-                filteredProperties[mappedKey] = value
-            }
+            filteredProperties[key] = value
         }
 
         return filteredProperties.isEmpty ? nil : filteredProperties
     }
+    
+    var mapSanitizeToUserpilotProperties: [String: Any]? {
+        guard let properties = dictionaryValue else { return nil }
+
+        var filteredProperties: [String: Any] = [:]
+
+        for (key, value) in properties {
+            let mappedKey = (key == "createdAt") ? "created_at" : key
+            filteredProperties[mappedKey] = value
+        }
+
+        return filteredProperties.isEmpty ? nil : filteredProperties
+    }
+    
 }
 
 /// Validates if a value is of a type supported by Userpilot traits.
 private func isAllowedPropertyType(_ value: Any) -> Bool {
-    if value is [String: Any] {
-        return true
-    }
-
     switch value {
-    case is String, is URL, is Bool, is NSNumber, is Date:
+    case is String, is Bool, is NSNumber, is Int, is Float, is Double:
         return true
     default:
         return false

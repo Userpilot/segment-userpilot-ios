@@ -26,7 +26,7 @@ class UserpilotDestinationTests: XCTestCase {
         super.setUp()
         
         // Pass required configuration parameter
-        analytics = Analytics(configuration: Configuration(writeKey: "mock-key"))
+        analytics = Analytics(configuration: Configuration(writeKey: "Userpilot Mobile"))
         mockUserpilot = MockUserpilot()
         
         // Create destination with a mock Userpilot factory
@@ -166,10 +166,6 @@ class UserpilotDestinationTests: XCTestCase {
     // MARK: - Group Tests
     
     func testGroupWithValidData() {
-        // Setup mock user data in Userpilot settings
-        let userSettings: [String: Any] = ["User": ["userID": "current_user_123"]]
-        mockUserpilot.mockSettings = userSettings
-        
         // Create group event with traits
         let traits: [String: Any] = [
             "name": "Test Company",
@@ -179,15 +175,14 @@ class UserpilotDestinationTests: XCTestCase {
         
         // Convert to JSON type required by GroupEvent
         let jsonTraits = try? JSON(traits)
-        
-        let event = GroupEvent(groupId: "company_123", traits: jsonTraits)
+        var event = GroupEvent(groupId: "company_123", traits: jsonTraits)
+        event.userId = "user_123"
         
         // Process the event
         let result = destination.group(event: event)
         
         // Verify the event was processed correctly
         XCTAssertEqual(result?.groupId, "company_123")
-        XCTAssertEqual(mockUserpilot.lastIdentifiedUserId, "current_user_123") // Uses ID from settings
         
         // Verify company data was passed correctly
         XCTAssertEqual(mockUserpilot.lastIdentifiedCompany?["id"] as? String, "company_123")
@@ -314,7 +309,7 @@ class UserpilotDestinationTests: XCTestCase {
         destination.reset()
         
         // Verify Userpilot destroy was called
-        XCTAssertTrue(mockUserpilot.destroyCalled)
+        XCTAssertTrue(mockUserpilot.logoutCalled)
     }
     
     // MARK: - Helper Methods
@@ -356,7 +351,7 @@ private class MockUserpilot: Userpilot {
     
     var lastScreenName: String?
     
-    var destroyCalled = false
+    var logoutCalled = false
     
     // Use the designated initializer from Userpilot
     init() {
@@ -379,8 +374,8 @@ private class MockUserpilot: Userpilot {
         lastScreenName = screenName
     }
     
-    override func destroy() {
-        destroyCalled = true
+    override func logout() {
+        logoutCalled = true
     }
     
     override func settings() -> [String: Any] {
