@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Userpilot/ios-sdk.git",
       "state" : {
-        "revision" : "c569a01fb241d53c019fae1a2c71d4b4859b172b",
-        "version" : "1.0.2"
+        "revision" : "60ff075c76a331f67d67ad90b85a2fb1600fdcfc",
+        "version" : "1.0.6"
       }
     },
     {

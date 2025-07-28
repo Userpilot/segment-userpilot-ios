@@ -15,7 +15,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/segmentio/analytics-swift.git", from: "1.7.3"),
-        .package(url: "https://github.com/Userpilot/ios-sdk.git", from: "1.0.2"),
+        .package(url: "https://github.com/Userpilot/ios-sdk.git", from: "1.0.6"),
     ],
     targets: [
         .target(
