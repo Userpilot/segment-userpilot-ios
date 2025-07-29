@@ -1,5 +1,5 @@
 {
-  "originHash" : "ab55bb91ebe3c2c20b0af2426413ec71e89aeb15338e785cc7b7ddff8dbd79ab",
+  "originHash" : "cd1ede2d57ced4eae64b0b84472a5c50abc1bb6b6f728c272ebf95e814904fbc",
   "pins" : [
     {
       "identity" : "analytics-swift",
@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Userpilot/ios-sdk.git",
       "state" : {
-        "revision" : "c569a01fb241d53c019fae1a2c71d4b4859b172b",
-        "version" : "1.0.2"
+        "revision" : "60ff075c76a331f67d67ad90b85a2fb1600fdcfc",
+        "version" : "1.0.6"
       }
     },
     {

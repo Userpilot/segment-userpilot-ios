@@ -24,7 +24,7 @@ class SegmentManager {
      However, this approach is not recommended because the token is intended to be configured only once.
      For better practice, declare the Userpilot instance inside init.
      */
-    private var analytics = Analytics(configuration: Configuration(writeKey: "YvNk9PJtR97EoXLSPYzNXUCDeQ1tbCu8")
+    private var analytics = Analytics(configuration: Configuration(writeKey: "PLACEHOLDER_KEY")
         .trackApplicationLifecycleEvents(true))
     
     private let userpilotDestination = UserpilotDestination { config in
