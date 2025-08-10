@@ -1,5 +1,11 @@
 # Analytics-Swift Userpilot
 
+
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/Userpilot/segment-userpilot-ios/blob/main/LICENSE)
+[![Platform](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FUserpilot%2Fsegment-userpilot-ios%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/Userpilot/segment-userpilot-ios)
+[![Swift version](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FUserpilot%2Fsegment-userpilot-ios%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/Userpilot/segment-userpilot-ios)
+
+
 Add Userpilot device mode support to your applications via this plugin for [Analytics-Swift](https://github.com/segmentio/analytics-swift)
 
 ## 🚀 Adding the dependency
