@@ -26,7 +26,7 @@ public class UserpilotDestination: DestinationPlugin {
     public let timeline = Timeline()
     public let key = "Userpilot Mobile"
     public let type = PluginType.destination
-    public var analytics: Analytics?
+    public weak var analytics: Analytics?
     
     /// The Userpilot SDK instance managed by this plugin.
     public internal(set) var userpilot: Userpilot?
