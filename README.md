@@ -20,7 +20,7 @@ Open your Package.swift file and add the following do your the `dependencies` se
 ```
 .package(
         url: "https://github.com/userpilot/segment-userpilot-ios.git",
-        from: "0.0.1-beta.1"
+        from: "1.0.0-beta.1"
     ),
 ```
 
