@@ -1,5 +1,4 @@
 {
-  "originHash" : "cd1ede2d57ced4eae64b0b84472a5c50abc1bb6b6f728c272ebf95e814904fbc",
   "pins" : [
     {
       "identity" : "analytics-swift",
@@ -15,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Userpilot/ios-sdk.git",
       "state" : {
-        "revision" : "60ff075c76a331f67d67ad90b85a2fb1600fdcfc",
-        "version" : "1.0.6"
+        "revision" : "c64942221ab31df058fe972b49e8542095ff58a5",
+        "version" : "1.0.12"
       }
     },
     {
@@ -36,16 +35,7 @@
         "revision" : "24867f3e4ac62027db9827112135e6531b6f4051",
         "version" : "1.1.2"
       }
-    },
-    {
-      "identity" : "swiftphoenixclient",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/davidstump/SwiftPhoenixClient",
-      "state" : {
-        "revision" : "25a4d8a3fa754ef3fb587a34addd08c7e568abc4",
-        "version" : "5.3.5"
-      }
     }
   ],
-  "version" : 3
+  "version" : 2
 }
